@@ -4,11 +4,12 @@
 
 /**class of the Node object for an AVL tree*/
 public class TNode{
+
 	TNode parent;
 	TNode left;
 	TNode right;
-	Post post;
-	long key; //timestamp
+	Post post; //the post that the node holds
+	long key; //timestamp of the post
 	
 	public TNode(Post po, TNode p, TNode l, TNode r){
 		parent = p;
@@ -19,6 +20,7 @@ public class TNode{
 	
 	}
 
+	
 	/**method to display the key of a node */
 	public void displayNode(){
 		
