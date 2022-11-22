@@ -65,8 +65,8 @@ public class Post {
             //display all the post chronological order
             myTree.inOrder(myTree.root);
 
-            System.out.println("The most recent post is");
-            myTree.getRecentPost().displayNode();
+            // System.out.println("The most recent post is");
+            // myTree.getRecentPost().displayNode();
 
       }
       

@@ -17,13 +17,12 @@ public class AVLTree{
 	 * @param TNode v the root of the tree
 	 */
 	public void inOrder(TNode v){
-
-		if(v.left != null){
-			inOrder(v.left);
-		}
-		v.displayNode();
 		if(v.right != null){
 			inOrder(v.right);
+		}
+		v.displayNode();
+		if(v.left != null){
+			inOrder(v.left);
 		}
 	}
 	/**helper method to insert a new Node recursively into a sub-tree
