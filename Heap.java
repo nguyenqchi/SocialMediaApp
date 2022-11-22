@@ -12,7 +12,7 @@ class Heap{
 	}
 
 	public Post getMin(){
-		return A[i];
+		return A[1];
 	}
 
 	public void insert(int k){
