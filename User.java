@@ -19,7 +19,12 @@ public class User{
 	public void displayAllPost(){
 		allPost.inOrder(allPost.root);
 	}
-
+	public void displayFollowers(){
+		followers.display();
+	}
+	public void displayFollowing(){
+		following.display();
+	}
 	public static void main(String[] args){
 		User me = new User("cnguyen2");
 		me.addPost("Hello World");
