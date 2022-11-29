@@ -15,17 +15,22 @@ public class User{
 
 	//Method to set the user's name to display
 	public void setDisplayName(String s){
-
+		displayName = s;
 	}
 
 	//Method to set the user's password
 	public void setPassword(String s){
-
+		password = s;
 	}
 
 	//Method to check if the user entered the correct password
 	public boolean checkPassword(String s){
-		if(s == )
+		if(s == password){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public void addPost(String s){
