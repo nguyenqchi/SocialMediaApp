@@ -12,6 +12,22 @@ public class User{
 		loginName = name;
 	}
 
+
+	//Method to set the user's name to display
+	public void setDisplayName(String s){
+
+	}
+
+	//Method to set the user's password
+	public void setPassword(String s){
+
+	}
+
+	//Method to check if the user entered the correct password
+	public boolean checkPassword(String s){
+		if(s == )
+	}
+
 	public void addPost(String s){
 		Post newpost = new Post(s, loginName);
 		allPost.insert(newpost);
