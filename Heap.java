@@ -17,7 +17,7 @@ class Heap{
 
 	public void insert(int k){
 		A[n+1] = k;
-		n =n +1;
+		n = n +1;
 		int child = n;
 		while(child>1 && A[child]<A[parent(child)]){
 			swap(child, parent(child));
