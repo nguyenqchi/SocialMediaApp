@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 
-public class HashNode{
+class HashNode{
 
 	String key;
 	User value;
 	HashNode next;
-	public HashNode(String loginname, User user>){
-		this.key = element;
-		this.value = value;
+	public HashNode(String loginname, User user){
+		this.key = loginname;
+		this.value = user;
 	}
 
 }
 
 
-public class HashMap<K,V> {
+public class HashMap {
 	private HashNode[] bucketArray;
 	private int numBuckets;
 	private int size;
@@ -24,7 +24,7 @@ public class HashMap<K,V> {
 		size = 0;
 
 		for(int i= 0; i < numBuckets; i++){
-			bucketArray.add(null);
+			bucketArray[i] = null;
 		}
 
 	}
@@ -38,17 +38,24 @@ public class HashMap<K,V> {
 	}
 
 	public long hashCode(HashNode e){
-		for(int i = 0; i < abc.length; i++){
-			hashVal = hashVal * 26 + charCode(abc.charAt(i))%
+		String loginname = e.key;
+		long hashVal = 0;
+		for(int i = 0; i < loginname.length(); i++){
+			hashVal = (hashVal * 26 + charCode(loginname.charAt(i))%size);
 
 		}
-	private long charCode(long searchKey) {
+		return hashVal;
+	}
+	private int charCode(char c) {
 
-		char[] abc = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-	pri
-		long low = 0;
-		long hi = nElems - 1;
-		long middle = 0; 
+		char[] abc = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+		int index = binarySearch(c, abc);
+		return index+1;
+	}	
+	private int binarySearch(char searchKey, char[] a){
+		int low = 0;
+		int hi = a.length - 1;
+		int middle = 0; 
 		while(low <= hi) {
 			middle = (low + hi) / 2;
 			if (a[middle] == searchKey){ //using binary search to see if the key is in the middle of the array
@@ -61,11 +68,12 @@ public class HashMap<K,V> {
 				low = middle + 1;  //it was in the left part of the array 
 			}
 		}
+		return -1;
 		
 
 	}
+}
 
 
 
 	
-}
