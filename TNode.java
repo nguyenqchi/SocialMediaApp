@@ -17,7 +17,7 @@ public class TNode{
 		right = r;
 		post = po;
 		key = post.getTimestamp();
-		System.out.println(key);
+		
 	
 	}
 

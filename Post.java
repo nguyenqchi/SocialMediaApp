@@ -40,7 +40,7 @@ public class Post {
             System.out.println("Total Likes:"+ numLikes);
             System.out.println("Replies:");
             displayReply();
-            System.out.println("\n");
+            
       }
       public long getTimestamp(){
             return timestamp;
