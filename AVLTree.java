@@ -17,13 +17,12 @@ public class AVLTree{
 	 * @param TNode v the root of the tree
 	 */
 	public void inOrder(TNode v){
-
-		if(v.left != null){
-			inOrder(v.left);
-		}
-		v.displayNode();
 		if(v.right != null){
 			inOrder(v.right);
+		}
+		v.displayNode();
+		if(v.left != null){
+			inOrder(v.left);
 		}
 	}
 	/**helper method to insert a new Node recursively into a sub-tree
@@ -326,7 +325,28 @@ public class AVLTree{
 		return u;
 	}
 
-	
+	public static void main(String[] args){
+		Post mypost = new Post("Keep Calm & Carry on!", "cnguyen", 1657793162248l, 20);
+        Post mypost1 = new Post("Hello", "anahi");
+        Post mypost2 = new Post("Be grateful!", "wsmith", 1607793162248l, 32);
+        Post mypost3 = new Post("Happy Thanksgiving", "wtarimo", 1637793162248l, 35);
+        Post mypost4 = new Post("Happy New Year", "tnguyen", 1648793162248l, 37);
+        Post mypost5 = new Post("Happy New Year", "wnguyen", 1658793162248l, 5);
+        
+        AVLTree myTree = new AVLTree();
+        myTree.insert(mypost1);
+        myTree.insert(mypost2);
+        myTree.insert(mypost3);
+        myTree.insert(mypost4);
+        myTree.insert(mypost);
+ 
+
+        //display all the post chronological order
+        myTree.inOrder(myTree.root);
+
+        System.out.println("The most recent post is");
+        myTree.getRecentPost().displayNode();
+	}
 	
 	
 
