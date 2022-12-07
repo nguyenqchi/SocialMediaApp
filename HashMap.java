@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 class HashNode{
 
 	String key;

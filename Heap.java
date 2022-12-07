@@ -19,11 +19,15 @@ class Heap{
 	 * @return the post with most likes
 	 */
 	public Post getMin(){
-		return A[i];
+		return A[1];
 	}
 
-	public void insert(int k){
-		A[n+1] = k;
+	//modify the insert method so it can insert a post instead of a number
+	/**method to insert a post into the heap with the key = number of likes
+	 * @param Post p the post that needs to be inserted
+	 */ 
+	public void insert(Post p){
+		A[n+1] = p;
 		n =n +1;
 		int child = n;
 

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Post {
       private long timestamp;
-      private String owner;
+      String owner;
       private String content;
       private int numLikes;
       private LinkedList replies = new LinkedList();

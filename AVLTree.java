@@ -4,27 +4,46 @@
 
 import java.io.*;
 import java.util.*;
+
 /**class to an AVL tree object to hold Post objects with the key being the timestamp of each post*/
 
 public class AVLTree{
 	TNode root;
+	int size;
 	
 	public AVLTree(){
 		root = null;
+		size = 0;
 		
 	}
 	/**inOrder traversal to display all the post in  chronological order
 	 * @param TNode v the root of the tree
 	 */
-	public void inOrder(TNode v){
-		if(v.right != null){
-			inOrder(v.right);
-		}
-		v.displayNode();
+	public void inOrder(TNode v, List<Post> allPost){
 		if(v.left != null){
-			inOrder(v.left);
+			inOrder(v.left, allPost);
+		
 		}
+		
+		allPost.add(v.post);
+	
+		if(v.right != null){
+			inOrder(v.right, allPost);
+		
+		}
+		
 	}
+	public List<Post> getPostList(){
+		List<Post> allpost = new ArrayList<Post>();
+		inOrder(root, allpost);
+		for (int i = 0; i<allpost.size(); i++){
+			System.out.print(i+1);
+			allpost.get(i).displayPost();
+			System.out.println();
+		}
+		return allpost;
+	}
+		
 	/**helper method to insert a new Node recursively into a sub-tree
 	 * @param Post p the new post that need to be inserted
 	 * @param TNode v the root of the sub-tree
@@ -70,6 +89,7 @@ public class AVLTree{
 	 	else{
 	 		recinSert(p, root);
 	 	}
+	 	size ++;
 	}
 	//end of insert method
 
@@ -103,8 +123,12 @@ public class AVLTree{
 	 * @return TNode the node that holds the most recent post
 	 */
 	public TNode getRecentPost(){
-		TNode v = getMax(root);
+		TNode v = getMin(root);
 		return v;
+	}
+	
+	public  boolean isEmpty(){
+		return (root == null);
 	}
 
 
@@ -342,7 +366,7 @@ public class AVLTree{
  
 
         //display all the post chronological order
-        myTree.inOrder(myTree.root);
+        List<Post> recent = myTree.getPostList();
 
         System.out.println("The most recent post is");
         myTree.getRecentPost().displayNode();
@@ -350,5 +374,5 @@ public class AVLTree{
 	
 	
 
-}//end of BST class
+}//end of AVLTree class
 

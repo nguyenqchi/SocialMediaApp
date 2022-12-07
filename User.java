@@ -25,7 +25,7 @@ public class User{
 
 	//Method to check if the user entered the correct password
 	public boolean checkPassword(String s){
-		if(s == password){
+		if(s.equals(password)){
 			return true;
 		}
 		else{
@@ -33,16 +33,17 @@ public class User{
 		}
 	}
 
-	public void addPost(String s){
+	public Post addPost(String s){
 		Post newpost = new Post(s, loginName);
 		allPost.insert(newpost);
+		return newpost;
 	}
 	public void displayAllPost(){
 		if(allPost.root == null){
 			System.out.println("You haven't posted anything recently.");
 		}
 		else{
-			allPost.inOrder(allPost.root);
+			allPost.getPostList();
 		}
 	}
 	public void displayFollowers(){
@@ -64,6 +65,9 @@ public class User{
 		}
 		
 	}
+	
+	
+	
 	public void addFollower(String s){
 		followers.addFirst(s);
 	}

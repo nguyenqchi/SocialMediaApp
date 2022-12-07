@@ -39,4 +39,21 @@ public class LinkedList{
 	public boolean isEmpty(){
 		return (head == null);
 	}
+/**
+* check if a node exists in the linked list or not
+* @param String v
+**/
+	public boolean find(String v){
+		LLNode current = head; //the current node
+	
+		while(current != null){
+
+			if(current.content.equals(v)){
+				return true;
+			}
+			current = current.next;
+			
+		}
+		return false;
+	}
 }
