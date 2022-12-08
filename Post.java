@@ -49,7 +49,7 @@ public class Post {
        * @param s content of the reply
        * @param o name of the user replied to the post
        */
-      public void addReply(String s, String o){
+      public void addReply(String o, String s){
             replies.addFirst(o+" replied to your post: "+s);
       }
       /**method to display all replies of a post
