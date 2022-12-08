@@ -227,12 +227,12 @@ public class SocialMedia {
 	
 		SocialMedia app = new SocialMedia();
 		
-		app.displayMenu();
 		
 		
 		
 		String option;
 		do{
+			app.displayMenu();
 			option = sc.next();
 			if(option.equals("B")){
 				System.out.print("Please enter your login name: ");
@@ -250,7 +250,7 @@ public class SocialMedia {
 	
 			}
 			
-			app.displayMenu();
+			
 		}while(!option.equals("C"));
 	}
 		

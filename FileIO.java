@@ -51,9 +51,10 @@ class FileIO{
 					String desc = ""; //to hold the text of the post itself
 					while (pScanner.hasNext()){ //while there are words left...
 						desc = desc + " " + pScanner.next(); //reads the description one word at a time
-						String[] post = desc.split("-", -1);
-						System.out.println("Text of post: " + post[0]);
+						
 					}
+					String[] post = desc.split("-", -1);
+					System.out.println("Text of post: " + post[0]+ "number of likes" + post[1]);
 					
 				}				
 				
