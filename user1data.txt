@@ -1,7 +1,7 @@
 Katherine Bergeron
 kbergeron
 Camels2022
-(1607793162248,"Go Camels!" - 21);(1639329173981,"Keeping calm, carrying on..." - 32)
+(1607793162248,"Go Camels!", 21);(1639329173981,"Keeping calm, carrying on...", 32)
 esmith25, oizm, ngarrett
 cchung, gparker, wtarimo
 

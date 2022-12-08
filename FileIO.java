@@ -53,8 +53,8 @@ class FileIO{
 						desc = desc + " " + pScanner.next(); //reads the description one word at a time
 						
 					}
-					String[] post = desc.split("-", -1);
-					System.out.println("Text of post: " + post[0]+ "number of likes" + post[1]);
+					String[] post = desc.split("\"", -1);
+					System.out.println("Text of post: " + post[1]+ "number of likes" + post[2]);
 					
 				}				
 				
