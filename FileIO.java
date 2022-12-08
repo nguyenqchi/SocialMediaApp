@@ -3,13 +3,14 @@ import java.util.Scanner;
 
 class FileIO{
 	public static void main(String args[]){
+		HashMap myMap = new HashMap(911);
 		//this try-catch statement is needed around this file input code
 		//because the FileInputStream may throw a FileNotFoundException
 		try {
 			Scanner lineScanner = new Scanner(new FileInputStream("user1data.txt"));
 			
 			while (lineScanner.hasNext()) { //while more of the input file is still available for reading
-											
+								
 				System.out.println("+++++++++++++++++++++++++++");
 				String name = lineScanner.nextLine();  //reads an entire line of input
 				System.out.println("Display Name is: " + name);
@@ -18,10 +19,15 @@ class FileIO{
 				String email = lineScanner.nextLine();
 				System.out.println("Username is: " + email);
 				
+				
 				System.out.println("+++++++++++++++++++++++++++");
 				String pass = lineScanner.nextLine();
 				System.out.println("Password is: " + pass);
 				
+				User newUser = new User(email);
+				newUser.setDisplayName(name);	
+				newUser.setPassword(pass);
+
 				System.out.println("+++++++++++++++++++++++++++");
 				String posts = lineScanner.nextLine(); //read the entire line of posts
 				//now create a secondary scanner to actually scan through this list of events
@@ -47,13 +53,18 @@ class FileIO{
 					System.out.println("(Now illustrating how to extract each piece of info about the post.)");
 					Scanner pScanner = new Scanner(p); //yet another scanner just for this particular post
 					pScanner.useDelimiter(",");
-					System.out.println("Time stamp: " + pScanner.nextLong());				
+					long timestamp = pScanner.nextLong();
+					System.out.println("Time stamp: " + timestamp);				
 					String desc = ""; //to hold the text of the post itself
 					while (pScanner.hasNext()){ //while there are words left...
 						desc = desc + " " + pScanner.next(); //reads the description one word at a time
 						
 					}
 					String[] post = desc.split("\"", -1);
+					String content = post[1];
+					int numLike = Integer.parseInt(post[2]);  
+					Post newPost = new Post(content, email, timestamp, numLike);
+					newUser.allPost.insert(newPost);
 					System.out.println("Text of post: " + post[1]+ "number of likes" + post[2]);
 					
 				}				
@@ -63,17 +74,18 @@ class FileIO{
 				/* reads in next line and then breaks it into separate friends
 				 * now the delimiter is just a comma because there are no quotes around
 				 * each data item.  so this is a bit simpler than above procedure.*/
-				String friends = lineScanner.nextLine();
-				Scanner friendScanner = new Scanner(friends);
-				String[] friendArray = new String[20]; 
+				String following = lineScanner.nextLine();
+				Scanner followingScanner = new Scanner(following);
+				//String[] followingArray = new String[20]; 
 				i = 0;
-				friendScanner.useDelimiter(",");  
-				String friend;
+				followingScanner.useDelimiter(",");  
+				String follow;
 				System.out.print("Friends are: ");
-				while (friendScanner.hasNext()) {
-					friend = friendScanner.next();
-					System.out.print(friend + ",");
-					friendArray[i] = friend; //stores friend into array of friends
+				while (followingScanner.hasNext()) {
+					follow = followingScanner.next().replaceAll("\\s", "");
+					newUser.following.addFirst(follow);
+					System.out.print(follow+ ",");
+					//friendArray[i] = friend; //stores friend into array of friends
 					//i don't do anything with this array, but it is here just to demonstrate
 					//(you may or may not be using an array to store the list of friends.)
 					i++;
@@ -87,15 +99,16 @@ class FileIO{
 				 * each data item.  so this is a bit simpler than above procedure.*/
 				String f = lineScanner.nextLine();
 				Scanner fScanner = new Scanner(f);
-				String[] fArray = new String[20]; 
+				//String[] fArray = new String[20]; 
 				i = 0;
 				fScanner.useDelimiter(",");  
 				String fol;
 				System.out.print("Followers are: ");
 				while (fScanner.hasNext()) {
-					fol = fScanner.next();
+					fol = fScanner.next().replaceAll("\\s", "");
 					System.out.print(fol + ",");
-					fArray[i] = fol; //stores friend into array of friends
+					newUser.followers.addFirst(fol);
+					//fArray[i] = fol; //stores friend into array of friends
 					//i don't do anything with this array, but it is here just to demonstrate
 					//(you may or may not be using an array to store the list of friends.)
 					i++;
@@ -103,8 +116,16 @@ class FileIO{
 				System.out.println();
 				System.out.println("+++++++++++++++++++++++++++");
 				
-				
+				myMap.add(email, newUser);
 			} //end while
+
+
+			User check = myMap.get("kbergeron");
+			System.out.println("displayname"+check.displayName+" password"+check.password);
+			check.allPost.getRecentPost().displayNode();
+			check.following.display();
+			check.followers.display();
+
 	
 		} catch(FileNotFoundException ex) {
 			System.out.println("File not Found");

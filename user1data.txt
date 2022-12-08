@@ -1,7 +1,14 @@
 Katherine Bergeron
 kbergeron
 Camels2022
-(1607793162248,"Go Camels!", 21);(1639329173981,"Keeping calm, carrying on...", 32)
-esmith25, oizm, ngarrett
+(1607793162248,"Go Camels!"21);(1639329173981,"Keeping calm, carrying on..."32)
+esmith25, oizm
 cchung, gparker, wtarimo
+
+William Tarimo
+Wtafrimo
+haha
+(1607793162260,"computer science is cool"32);(1617793162263,"life is beautiful"40)
+kbergeron, gparker
+cchung, oizm
 
