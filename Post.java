@@ -50,7 +50,7 @@ public class Post {
        * @param o name of the user replied to the post
        */
       public void addReply(String o, String s){
-            replies.addFirst(o+" replied to your post: "+s);
+            replies.addFirst(o+" replied to the post: "+s);
       }
       /**method to display all replies of a post
        * 
@@ -58,7 +58,7 @@ public class Post {
 
       public void displayReply(){
             if(replies.isEmpty()){
-                  System.out.println("Your post has no reply yet");
+                  System.out.println("The post has no reply yet");
             }
             else{
                   replies.display();

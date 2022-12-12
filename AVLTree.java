@@ -16,19 +16,24 @@ public class AVLTree{
 		size = 0;
 		
 	}
+	//***BONUS BONUS BONUS inorder traversal go from the right child first then
+	//the left child so that the post can be displayed in reverse-chronological order
+
 	/**inOrder traversal to display all the post in  chronological order
 	 * @param TNode v the root of the tree
+	 * reverse-chronological order
 	 */
 	public void inOrder(TNode v, List<Post> allPost){
-		if(v.left != null){
-			inOrder(v.left, allPost);
+		if(v.right != null){
+			inOrder(v.right, allPost);
 		
 		}
 		
 		allPost.add(v.post);
 	
-		if(v.right != null){
-			inOrder(v.right, allPost);
+	
+		if(v.left != null){
+			inOrder(v.left, allPost);
 		
 		}
 		
@@ -123,7 +128,7 @@ public class AVLTree{
 	 * @return TNode the node that holds the most recent post
 	 */
 	public TNode getRecentPost(){
-		TNode v = getMin(root);
+		TNode v = getMax(root);
 		return v;
 	}
 	

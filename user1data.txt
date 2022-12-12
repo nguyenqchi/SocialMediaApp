@@ -1,14 +1,20 @@
 Katherine Bergeron
 kbergeron
 Camels2022
-(1607793162248,"Go Camels!"21);(1639329173981,"Keeping calm, carrying on..."32)
-esmith25, oizm
-cchung, gparker, wtarimo
-
+(1647793162248,121, "Go Camels!", "wtarimo-Yay", "wtarimo-Nice job");(1639329173981,32, "Keeping calm and carrying on...")
+wtarimo
+wtarimo
 William Tarimo
-Wtafrimo
+wtarimo
 haha
-(1607793162260,"computer science is cool"32);(1617793162263,"life is beautiful"40)
-kbergeron, gparker
-cchung, oizm
+(1607793162260,40, "computer science is cool");(1617793162263,100, "life is beautiful")
+kbergeron,cchung
+Cchung,kbergeron
+Christine Chung
+cchung
+code
+(1647793162260,40, "coding for life", "wtarimo-that's true");(1617793162263,100, "conncoll is da best", "kbergeron-glad to hear that")
+kbergeron, wtarimo
+Wtarimo
+
 
