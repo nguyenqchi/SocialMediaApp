@@ -5,6 +5,7 @@ class HashNode{
 	String key;
 	User value;
 	HashNode next;
+
 	public HashNode(String loginname, User user){
 		key = loginname;
 		value = user;
@@ -18,6 +19,8 @@ public class HashMap {
 	private HashNode[] bucketArray;
 	private int capacity;
 	private int size;
+	ArrayList<User> values = new ArrayList<User>(); //array list to hold all values(user object) in the hash map
+	
 
 	public HashMap(int cap){
 		bucketArray = new HashNode[cap]; //the array to hold all hash node
@@ -129,9 +132,15 @@ public class HashMap {
 	        head = new HashNode(key, value);
 	    }
         System.out.println("Successfully add new item in the hash table at bucket index"+ bucketIndex);
+        values.add(value);
         size ++;
     }
 
+    /**method to return all values(user object) in the hash map
+     */
+    public ArrayList getValues(){
+    	return values;
+    }
     public static void main(String[] args){
 
     	//create some user objects to test
@@ -150,7 +159,7 @@ public class HashMap {
     	michelle.addPost("Christmas is comingggg!!");
     	michelle.displayAllPost();
 
-
+    	System.out.println(myMap.getValues());
 
     } 
 
