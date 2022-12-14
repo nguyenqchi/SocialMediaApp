@@ -95,7 +95,7 @@ public class SocialMedia {
 		System.out.println("c. View your list of followers");
 		System.out.println("d. View your list of following");
 		System.out.println("e. Follow a user");
-		System.out.println("f.Log out");
+		System.out.println("f. Log out");
 	}
 	public void mainAction(User me){
 		
