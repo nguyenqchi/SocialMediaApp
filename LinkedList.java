@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class LinkedList{
 	LLNode head;
 	
@@ -23,6 +25,17 @@ public class LinkedList{
 			
 
 		}
+	}
+	public ArrayList<String> getNodeContent(){
+		LLNode current = head; //the current node
+		ArrayList<String> nodeContents = new ArrayList<String>();
+		while(current != null){
+			nodeContents.add(current.content);
+			current = current.next;
+			
+
+		}
+		return nodeContents;
 	}
 /**
  * add a node to the head of the list

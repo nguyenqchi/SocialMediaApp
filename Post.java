@@ -1,13 +1,11 @@
-import java.sql.Timestamp;    
-import java.util.Date;    
-
+import java.util.*;    
 
 public class Post {
       private long timestamp;
       String owner;
-      private String content;
+      String content;
       private int numLikes;
-      private LinkedList replies = new LinkedList();
+      LinkedList replies = new LinkedList();
 
       //constructor for brand new post
       public Post(String c, String o){
@@ -37,7 +35,7 @@ public class Post {
             System.out.println("-----"+owner+"-----");
             System.out.println(new Date(timestamp));
             System.out.println(content);
-            System.out.println("Total Likes:"+ numLikes);
+            System.out.println("Total Likes: "+ numLikes);
             System.out.println("Replies:");
             displayReply();
             
@@ -50,7 +48,7 @@ public class Post {
        * @param o name of the user replied to the post
        */
       public void addReply(String o, String s){
-            replies.addFirst(o+" replied to the post: "+s);
+            replies.addFirst(o+"-"+s);
       }
       /**method to display all replies of a post
        * 
@@ -61,7 +59,12 @@ public class Post {
                   System.out.println("The post has no reply yet");
             }
             else{
-                  replies.display();
+                  ArrayList<String> allReplies = replies.getNodeContent();
+                  
+                  for (int i = 0; i<allReplies.size(); i++){
+                  	String[] owner_reply = allReplies.get(i).split("-", 2);
+                  	System.out.println(owner_reply[0] +" replied to the post: "+owner_reply[1]);
+                  }
             }
 
 
@@ -83,14 +86,6 @@ public class Post {
 
       }
       public static void main(String[] args){
-
-            // Date mydate = new Date(122, 9, 30);
-            // System.out.println(mydate.getTime());
-            // System.out.println(mydate.toString());
-            // long diff = (System.currentTimeMillis()-mydate.getTime())/(24*60*60*1000);
-
-            // System.out.println(diff);
-
             Post mypost = new Post("Keep Calm & Carry on!", "cnguyen", 1657793162248l, 20);
             Post mypost1 = new Post("Hello", "anahi");
             mypost.displayPost();
@@ -113,15 +108,6 @@ public class Post {
             mypost5.displayPost();
             System.out.println("Expired" + mypost5.isExpired());
 
-            
-            
-            
-            //test the Heap
-            
-
-
       }
-      
-
 
 }     

@@ -13,7 +13,6 @@ class HashNode{
 
 }
 
-
 public class HashMap {
 
 	private HashNode[] bucketArray;
@@ -131,16 +130,17 @@ public class HashMap {
 	        //add the new node to the hash table
 	        head = new HashNode(key, value);
 	    }
-        System.out.println("Successfully add new item in the hash table at bucket index"+ bucketIndex);
+        //System.out.println("Successfully add new item in the hash table at bucket index"+ bucketIndex);
         values.add(value);
         size ++;
     }
 
     /**method to return all values(user object) in the hash map
      */
-    public ArrayList getValues(){
+    public ArrayList<User> getValues(){
     	return values;
     }
+
     public static void main(String[] args){
 
     	//create some user objects to test

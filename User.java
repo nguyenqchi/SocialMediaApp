@@ -43,7 +43,7 @@ public class User{
 			System.out.println("You haven't posted anything recently.");
 		}
 		else{
-			allPost.getPostList();
+			allPost.getPostList(true);
 		}
 	}
 	public void displayFollowers(){

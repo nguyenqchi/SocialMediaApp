@@ -13,10 +13,11 @@ public class SocialMedia {
 		readFile();
 	}
 	public void displayMenu(){
-	
-		System.out.println("A. Login to your account: " );
-		System.out.println("B. Create a new account: ");
-		System.out.println("C. Exit the program: ");
+		System.out.println();
+		System.out.println("--- CC SNAP TWEET ---\n");
+		System.out.println("a. Login to your account " );
+		System.out.println("b. Create a new account ");
+		System.out.println("c. Exit the program ");
 		
 		
 	}
@@ -76,7 +77,6 @@ public class SocialMedia {
 			System.out.println("The login name you typed in is not existed in our system.");
 		}
 		else{
-			System.out.print("password: " + me.password);
 			do{
 				System.out.print("Enter your password: ");
 				pw = sc.next();
@@ -89,7 +89,7 @@ public class SocialMedia {
 	}
 	
 	private void displayUserMenu(){
-		System.out.println("----- Main Menu -----");
+		System.out.println("----- MAIN MENU -----");
 		System.out.println("a. Like a post");
 		System.out.println("b. Add a new post");
 		System.out.println("c. View your list of followers");
@@ -100,7 +100,8 @@ public class SocialMedia {
 	public void mainAction(User me){
 		
 		String option;
-		do{
+		do{	
+			System.out.println();
 			displayUserMenu();
 			System.out.print("Enter your option: ");
 			option = sc.next();
@@ -144,15 +145,16 @@ public class SocialMedia {
 						continue; 
 					}
 					User following = myMap.get(name);
-					System.out.println(following.loginName);
+
 					try{
 						
 						if(following.allPost.root == null){
 							System.out.println(following.loginName+ " hasn't posted anything recently.");
 							
 						}
-						else{
-							List<Post> followingPost = following.allPost.getPostList();
+						else{	
+							System.out.println("Recent posts of @" + following.loginName + " :"); 
+							ArrayList<Post> followingPost = following.allPost.getPostList(true);
 							System.out.println("Enter the post number you want to engage with\nOr enter 0 if you want to come back to main menu: ");
 							int p = sc.nextInt();
 							if(p == 0){
@@ -161,14 +163,16 @@ public class SocialMedia {
 							try{
 								
 								Post chose = followingPost.get(p-1);
+								System.out.println("Choose an option");
 								System.out.println("a. Like the post \nb. Reply to "+ chose.owner);
 								String opt = sc.next();
 								while(!(opt.equals("a")|| opt.equals("b"))){
 									System.out.println("Invalid Syntax. Type again.");
+									System.out.println("Choose an option");
 									System.out.println("a. Like the post \nb. Reply to"+ chose.owner);
 									opt = sc.next();
 								}
-								if(option.equals("a")){
+								if(opt.equals("a")){
 									chose.increaseLike();
 									System.out.println("Successfully liked the post");
 								}
@@ -208,7 +212,7 @@ public class SocialMedia {
 						System.out.println("Successfully follow "+newFollowing);
 					}
 				}
-			}else{
+			}else if (!(option.equals("a") || option.equals("b") || option.equals("c") || option.equals("d") || option.equals("e") || option.equals("f"))) {
 				System.out.println("Please enter your option again!");
 			}
 				
@@ -235,7 +239,98 @@ public class SocialMedia {
 		
 	}	
 
-
+	public void writeFile() {
+		try {
+			FileWriter file = new FileWriter("user1data.txt");
+			BufferedWriter buffWriter = new BufferedWriter(file);
+			
+			ArrayList<User> users = myMap.getValues();
+			int size = myMap.size();
+			for (int i=0; i<size; i++) {
+				User u = users.get(i);
+				String name = u.displayName;
+				buffWriter.write(name + "\n");
+				String login = u.loginName;
+				buffWriter.write(login + "\n");
+				String pass = u.password;
+				buffWriter.write(pass + "\n");
+				String p ;
+				
+				//write posts
+				if(u.allPost.isEmpty())
+					buffWriter.write("\n");
+				else{
+					ArrayList<Post> posts = u.allPost.getPostList(false);
+					for (int k=0; k<posts.size(); k++) {
+						 p = "";
+						 Post post = posts.get(k);
+						 p += post.getTimestamp() + "," + post.getLike() + ", ";
+						 p += "\"" + post.content +"\"";
+						 
+						 ArrayList<String> allReplies = post.replies.getNodeContent();
+						 if (allReplies.size() == 0)
+						 	p += "";
+						 else {
+							 for (int j=0; j<allReplies.size(); j++) {
+							 	p += ", \"" + allReplies.get(j) + "\"";
+							 	
+							 }
+						}
+						 
+						if (k != posts.size()-1)
+							buffWriter.write("(" + p + ");");
+					
+						else if (k == posts.size()-1) {
+							buffWriter.write("(" + p + ")\n");
+						}
+					}
+				}
+					
+				
+				//write following
+				if(u.following.isEmpty())
+					buffWriter.write("\n");
+				else{
+				
+					ArrayList<String> following = u.following.getNodeContent();
+					for (int x=0; x<following.size(); x++) {
+						String followingUser = following.get(x);
+						if (x != following.size()-1)
+							buffWriter.write(followingUser + ",");
+					
+						else {
+							buffWriter.write(followingUser + "\n");
+						}
+					}
+				}
+				
+				//write follower
+				if (u.followers.isEmpty())
+					buffWriter.write("\n");
+				else{
+					ArrayList<String> follower = u.followers.getNodeContent();
+					for (int y=0; y<follower.size(); y++) {
+						String followerUser = follower.get(y);
+						if (y != follower.size()-1)
+							buffWriter.write(followerUser + ",");
+					
+						else {
+							buffWriter.write(followerUser + "\n");
+						}
+					}
+				}
+				
+			}
+			
+					 
+			buffWriter.close();
+			
+			file.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void readFile(){
 		//this try-catch statement is needed around this file input code
 		//because the FileInputStream may throw a FileNotFoundException
@@ -262,68 +357,68 @@ public class SocialMedia {
 				//now create a secondary scanner to actually scan through this list of events
 				// to break them up into individual events
 				
-				Scanner postScanner = new Scanner(posts);
+				try (Scanner postScanner = new Scanner(posts)) {
+					//on this line of data, events are in quotes and delimited by commas, 
+					// so we tell the scanner to look for a close paren followed by a comma "),"
+					// to delimit each post
+					postScanner.useDelimiter(";"); //need the backslash in front of special characters like "
+					String p; //will hold each individual post
+					//System.out.println("Posts are: ");
+					while (postScanner.hasNext()){
+						
+						p = postScanner.next();
+						p = p.substring(1, p.length()-1); //cut off the parens around each post
+						
+						
+						try (//here's some extra code to demonstrate how to further break down each event string
+												//System.out.println("(Now illustrating how to extract each piece of info about the post.)");
+						Scanner pScanner = new Scanner(p)) {
+							pScanner.useDelimiter(",");
+
+							long timestamp = pScanner.nextLong();
+							int numLike = pScanner.nextInt();
+
+							String desc = ""; //to hold the text of the post itself and all the replies of the post
+							while (pScanner.hasNext()){ //while there are words left...
+								desc = desc + " " + pScanner.next(); //reads the description one 
+							}
+							
+							String[] post_replies = desc.split("\" ", -1);
+
+							String content = post_replies[0].replaceAll("\"", "").replace("  ","");
+							
+							Post newPost = new Post(content, login, timestamp, numLike);
+							if(newPost.isExpired()){
+								continue; //skip the expired post
+							}
+							for(int j = 1; j<post_replies.length; j++){
+								String[] reply = post_replies[j].split("-", -1);
+							
+								newPost.addReply(reply[0].replaceAll(" \"",""), reply[1].replaceAll("\"", ""));
+							}
+							
+							newUser.allPost.insert(newPost); //add new post to user record
+							allpost.insert(newPost); //add new post the system
+						}
+						
+						
+					}
+				}
 				
 			
-				//on this line of data, events are in quotes and delimited by commas, 
-				// so we tell the scanner to look for a close paren followed by a comma "),"
-				// to delimit each post
-				postScanner.useDelimiter(";"); //need the backslash in front of special characters like "
-				String p; //will hold each individual post
-				//System.out.println("Posts are: ");
-				while (postScanner.hasNext()){
-					
-					p = postScanner.next();
-					p = p.substring(1, p.length()-1); //cut off the parens around each post
-					
-					
-					//here's some extra code to demonstrate how to further break down each event string
-					//System.out.println("(Now illustrating how to extract each piece of info about the post.)");
-					Scanner pScanner = new Scanner(p); //yet another scanner just for this particular post
-					pScanner.useDelimiter(",");
-
-					long timestamp = pScanner.nextLong();
-					int numLike = pScanner.nextInt();
-
-					String desc = ""; //to hold the text of the post itself and all the replies of the post
-					while (pScanner.hasNext()){ //while there are words left...
-						desc = desc + " " + pScanner.next(); //reads the description one 
-					}
-					
-					String[] post_replies = desc.split("\" ", -1);
-
-					String content = post_replies[0].replaceAll("\"", "").replace("  ","");
-					
-					Post newPost = new Post(content, login, timestamp, numLike);
-					if(newPost.isExpired()){
-						continue; //skip the expired post
-					}
-					for(int j = 1; j<post_replies.length; j++){
-						String[] reply = post_replies[j].split("-", -1);
-						
-						newPost.addReply(reply[0].replaceAll(" \"",""), reply[1].replaceAll("\"", ""));
-					}
-					
-					newUser.allPost.insert(newPost); //add new post to user record
-					allpost.insert(newPost); //add new post the system
-					
-					
-				}				
-				
-
 				/* reads in next line and then breaks it into separate friends
 				 * now the delimiter is just a comma because there are no quotes around
 				 * each data item.  so this is a bit simpler than above procedure.*/
 				String following = lineScanner.nextLine();
-				Scanner followingScanner = new Scanner(following);
-				
-				followingScanner.useDelimiter(",");  
-				String follow;
-				//System.out.print("Friends are: ");
-				while (followingScanner.hasNext()) {
-					follow = followingScanner.next().replaceAll("\\s", "");
-					newUser.following.addFirst(follow); //add to the user's following list
-					
+				try (Scanner followingScanner = new Scanner(following)) {
+					followingScanner.useDelimiter(",");  
+					String follow;
+					//System.out.print("Friends are: ");
+					while (followingScanner.hasNext()) {
+						follow = followingScanner.next().replaceAll("\\s", "");
+						newUser.following.addFirst(follow); //add to the user's following list
+						
+					}
 				}
 				
 				/** now the same for followers ... 
@@ -331,24 +426,19 @@ public class SocialMedia {
 				 * now the delimiter is just a comma because there are no quotes around
 				 * each data item.  so this is a bit simpler than above procedure.*/
 				String f = lineScanner.nextLine();
-				Scanner fScanner = new Scanner(f);
-				
-				fScanner.useDelimiter(",");  
-				String fol;
-				//System.out.print("Followers are: ");
-				while (fScanner.hasNext()) {
-					fol = fScanner.next().replaceAll("\\s", "");
-					
-					newUser.followers.addFirst(fol);
-					
-					
+				try (Scanner fScanner = new Scanner(f)) {
+					fScanner.useDelimiter(",");  
+					String fol;
+					//System.out.print("Followers are: ");
+					while (fScanner.hasNext()) {
+						fol = fScanner.next().replaceAll("\\s", "");		
+						newUser.followers.addFirst(fol);			
+					}
 				}
 				
 				myMap.add(login, newUser);
 			} //end while
-
-
-	
+			
 		} catch(FileNotFoundException ex) {
 			System.out.println("File not Found");
 			System.exit(0);
@@ -361,13 +451,12 @@ public class SocialMedia {
 		SocialMedia app = new SocialMedia();
 		
 		
-		
-		
 		String option;
 		do{
 			app.displayMenu();
-			option = sc.next().toUpperCase(); // make it non case sensitive
-			if(option.equals("B")){
+			System.out.print("Please choose an option: ");
+			option = sc.next(); 
+			if(option.equals("b")){
 				System.out.print("Please enter your login name: ");
 				String loginName = sc.next();
 				System.out.print("Please enter your password: ");
@@ -376,15 +465,17 @@ public class SocialMedia {
 				String userName = sc.next();
 				app.createNewUser(loginName,passWord,userName);
 			}
-			else if(option.equals("A")){
+			else if(option.equals("a")){
 				System.out.print("Please enter your login name: ");
 				String loginName = sc.next();
 				app.logIn(loginName);
 	
 			}
+			else if(!(option.equals("a") || option.equals("b") || option.equals("c"))) 
+				System.out.println("Please choose again!");
 			
-			
-		}while(!option.equals("C"));
+		}while(!option.equals("c"));
+		app.writeFile();
 	}
 		
 }

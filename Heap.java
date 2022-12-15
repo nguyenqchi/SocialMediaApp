@@ -54,51 +54,7 @@ class Heap{
 	private int parent(int i){
 		return i/2;
 	}
-	/**method to return the left child of a post*/
-	private int leftChild(int i){
-		return i * 2;
-	}
-	/**method to return the right child of a post*/
-	private int rightChild(int i){
-		return i * 2 + 1;
-	}
 
-	// private boolean isLeaf(int i){
-	// 	return leftChild(i)> n;
-	// }
-
-	// private boolean hasSmallerChild(int i){
-	// 	if(isLeaf(i)){
-	// 		return false;
-	// 	}
-	// 	if(A[i]>A[leftChild(i)] || A[i]>A[rightChild(i)]){
-	// 		return true;
-	// 	}
-	// 	return false;
-	// }
-
-	// public int extractMin(){
-	// 	swap(1, n)
-	// 	n --;
-	// 	p = 1;
-	// 	while(hasSmallerChild(p)){
-	// 		if(rightChild(p)>n){
-	// 			swap(p, leftChild(p));
-	// 			p = leftChild(p);
-
-	// 		}
-	// 		else{
-	// 			if(A[leftChild(p)]<A[rightChild(p)]){
-	// 				swap(p, leftChild(p));
-	// 				p = leftChild(p);
-	// 			} 
-	// 			else{
-	// 				swap(p, rightChild(p));
-	// 				p = rightChild(p);
-	// 			}
-	// 		}
-	// 	}
-	// }
 	public static void main(String[] args){
 		Heap myHeap = new Heap(100);
 		Post mypost = new Post("Keep Calm & Carry on!", "cnguyen", 1657793162248l, 20);
