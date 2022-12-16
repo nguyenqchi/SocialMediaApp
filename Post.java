@@ -36,7 +36,6 @@ public class Post {
             System.out.println(new Date(timestamp));
             System.out.println(content);
             System.out.println("Total Likes: "+ numLikes);
-            System.out.println("Replies:");
             displayReply();
             
       }
@@ -59,6 +58,7 @@ public class Post {
                   System.out.println("The post has no reply yet");
             }
             else{
+                  System.out.println("Total Replies: "+replies.size());
                   ArrayList<String> allReplies = replies.getNodeContent();
                   
                   for (int i = 0; i<allReplies.size(); i++){

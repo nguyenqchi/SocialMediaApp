@@ -2,14 +2,14 @@ import java.util.*;
 
 public class LinkedList{
 	LLNode head;
-	
+	int size;
 
 /**
  * Constructor that creates an empty list
  */
 	public LinkedList(){
 		head = null;
-		
+		size = 0;
 	}
 
 /** 
@@ -25,6 +25,9 @@ public class LinkedList{
 			
 
 		}
+	}
+	public int size(){
+		return size;
 	}
 	public ArrayList<String> getNodeContent(){
 		LLNode current = head; //the current node
@@ -47,7 +50,7 @@ public class LinkedList{
 
 		v.next = head;
 		head = v; //adding new node
-		
+		size++;
 	}
 	public boolean isEmpty(){
 		return (head == null);

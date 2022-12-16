@@ -1,6 +1,4 @@
-/**Chloe Nguyen - COM 212
- * Project 4 - Bonus AVL Tree
- */
+
 
 import java.util.*;
  
@@ -38,6 +36,10 @@ import java.util.*;
 		 
 	 }
 	 public ArrayList<Post> getPostList(boolean printPost){
+	 	 if(isEmpty()){
+	 	 	System.out.println("This user hasn't posted anything lately");
+	 	 	return null;
+	 	 }
 		 ArrayList<Post> allpost = new ArrayList<Post>();
 		 inOrder(root, allpost);
 		 if(printPost){

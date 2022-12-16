@@ -1,20 +1,42 @@
 Katherine Bergeron
 kbergeron
 Camels2022
-(1647793162248,121, "Go Camels!", "wtarimo-Yay", "wtarimo-Nice job");(1639329173981,32, "Keeping calm and carrying on...")
-wtarimo
-wtarimo
+(1671153139007,0, "Make ConnColl Great Again =)");(1647793162248,122, "Go Camels!", "wtarimo-Yay", "wtarimo-Nice job")
+nle6,wtarimo
+nle6,wtarimo
 William Tarimo
 wtarimo
 haha
-(1607793162260,40, "computer science is cool");(1617793162263,100, "life is beautiful")
-kbergeron,cchung
-Cchung,kbergeron
+(1671151556641,0, "Good luck on Finals Camels!", "cnguyen-thank you ")
+cnguyen,kbergeron,cchung
+cnguyen,Cchung,kbergeron
 Christine Chung
 cchung
 code
-(1647793162260,40, "coding for life", "wtarimo-that's true");(1617793162263,100, "conncoll is da best", "kbergeron-glad to hear that")
-kbergeron, wtarimo
-Wtarimo
+(1647793162260,40, "coding for life", "wtarimo-that's true", "wtarimo-it is so funnn")
+kbergeron,wtarimo,cnguyen
+Wtarimo,cnguyen
+Chloe
+cnguyen
+haha
+(1671151277858,2, "Christmas is comingggg!", "nle6-And it's gonna be so cold =)))")
+wtarimo,cchung,dsmith,nle6
+dsmith,nle6,wtarimo,cchung
+Michelle Le
+nle6
+haha
+(1671151862335,1, "I'm a sophomore majoring in CS", "dsmith-I'm majoring in CS too. Nice to meet you!", "cnguyen-So proud of you love! Enjoy your journey =)))")
+kbergeron,cnguyen
+kbergeron,dsmith,cnguyen
+Daniel Smith
+dsmith
+haha
+
+cnguyen,nle6
+cnguyen
+Michael Douglass
+mdouglass
+haha
+
 
 

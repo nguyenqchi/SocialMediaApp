@@ -5,7 +5,7 @@ public class SocialMedia {
 
 	private HashMap myMap = new HashMap(911);
 	public static Scanner sc = new Scanner(System.in);
-	public List<Post> followingPost = new ArrayList<Post>();
+	public ArrayList<Post> followingPost = new ArrayList<Post>();
 	Heap allpost = new Heap(1000);
 	
 	//will add all posts to the heap in the constructor
@@ -95,7 +95,24 @@ public class SocialMedia {
 		System.out.println("c. View your list of followers");
 		System.out.println("d. View your list of following");
 		System.out.println("e. Follow a user");
-		System.out.println("f. Log out");
+		System.out.println("f. View your following's posts");
+		System.out.println("g. Log out");
+	}
+
+
+	/**BONUS BONUS BONUS*/
+	private void displayFollowingPost(User me){
+
+		LinkedList following = me.following;
+		System.out.println("\nDisplaying your following's recent posts");
+		LLNode cur = following.head;
+		while(cur != null){
+			User f = myMap.get(cur.content);
+			System.out.println("Recent Posts from "+f.displayName);
+			f.allPost.getPostList(true);
+			cur = cur.next;
+		}
+
 	}
 	public void mainAction(User me){
 		
@@ -212,12 +229,16 @@ public class SocialMedia {
 						System.out.println("Successfully follow "+newFollowing);
 					}
 				}
-			}else if (!(option.equals("a") || option.equals("b") || option.equals("c") || option.equals("d") || option.equals("e") || option.equals("f"))) {
+			}
+			else if(option.equals("f")){
+				displayFollowingPost(me);
+			}
+			else if (!(option.equals("a") || option.equals("b") || option.equals("c") || option.equals("d") || option.equals("e") || option.equals("f") || option.equals("g"))) {
 				System.out.println("Please enter your option again!");
 			}
 				
 		}
-		while(!option.equals("f"));
+		while(!option.equals("g"));
 	}
 
 			
@@ -459,10 +480,19 @@ public class SocialMedia {
 			if(option.equals("b")){
 				System.out.print("Please enter your login name: ");
 				String loginName = sc.next();
+
+				while (app.myMap.get(loginName) != null){
+					//the login name is already existed
+					System.out.print("The login name you chose already existed in our system.\nPlease enter a new login name: ");
+					loginName = sc.next();
+
+				}
+				
 				System.out.print("Please enter your password: ");
 				String passWord = sc.next();
-				System.out.print("Please enter your name: ");
-				String userName = sc.next();
+				System.out.print("Please enter your display name: ");
+				sc.nextLine();
+				String userName = sc.nextLine();
 				app.createNewUser(loginName,passWord,userName);
 			}
 			else if(option.equals("a")){
