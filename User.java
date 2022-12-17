@@ -1,3 +1,4 @@
+/**class definition of a User object */
 public class User{
 	
 	String displayName;
@@ -12,18 +13,17 @@ public class User{
 		loginName = name;
 	}
 
-
-	//Method to set the user's name to display
+	/**Method to set the user's name to display*/
 	public void setDisplayName(String s){
 		displayName = s;
 	}
 
-	//Method to set the user's password
+	/**Method to set the user's password*/
 	public void setPassword(String s){
 		password = s;
 	}
 
-	//Method to check if the user entered the correct password
+	/**Method to check if the user entered the correct password*/
 	public boolean checkPassword(String s){
 		if(s.equals(password)){
 			return true;
@@ -32,20 +32,25 @@ public class User{
 			return false;
 		}
 	}
-
+	/**method to add a new post
+	 * @param String the content of the new post
+	 */
 	public Post addPost(String s){
 		Post newpost = new Post(s, loginName);
 		allPost.insert(newpost);
 		return newpost;
 	}
+	/**method to display all the posts of a user in reverse-chronological order */
 	public void displayAllPost(){
 		if(allPost.root == null){
-			System.out.println("You haven't posted anything recently.");
+			System.out.println(loginName+" hasn't posted anything recently.");
 		}
 		else{
 			allPost.getPostList(true);
 		}
 	}
+
+	/**method to display all the accounts that follow the user */
 	public void displayFollowers(){
 		if(followers.isEmpty()){
 			System.out.println("You don't have any followers.");
@@ -55,6 +60,7 @@ public class User{
 			followers.display();
 		}
 	}
+	/**method to display all the account that the user is following */
 	public void displayFollowing(){
 		if(following.isEmpty()){
 			System.out.println("You are not following anyone");
@@ -66,11 +72,11 @@ public class User{
 		
 	}
 	
-	
-	
+	/**method to add new follower */
 	public void addFollower(String s){
 		followers.addFirst(s);
 	}
+	/**method to add new following */
 	public void addFollowing(String s){
 		following.addFirst(s);
 	}

@@ -23,7 +23,7 @@ public class SocialMedia {
 	}
 	
 	public void newFeed(User me){
-		System.out.println("Welcome, "+me.displayName+"\n");
+		System.out.println("\nWelcome, "+me.displayName+"\n");
 
 		if(!me.allPost.isEmpty()){
 			System.out.println("Your most recent post is: ");
@@ -98,9 +98,7 @@ public class SocialMedia {
 		System.out.println("f. View your following's posts");
 		System.out.println("g. Log out");
 	}
-
-
-	/**BONUS BONUS BONUS*/
+	
 	private void displayFollowingPost(User me){
 
 		LinkedList following = me.following;
@@ -108,7 +106,7 @@ public class SocialMedia {
 		LLNode cur = following.head;
 		while(cur != null){
 			User f = myMap.get(cur.content);
-			System.out.println("Recent Posts from "+f.displayName);
+			System.out.println("\nRecent Posts from "+f.displayName);
 			f.allPost.getPostList(true);
 			cur = cur.next;
 		}
@@ -178,37 +176,39 @@ public class SocialMedia {
 								continue;
 							}
 							try{
-								
 								Post chose = followingPost.get(p-1);
-								System.out.println("Choose an option");
-								System.out.println("a. Like the post \nb. Reply to "+ chose.owner);
-								String opt = sc.next();
-								while(!(opt.equals("a")|| opt.equals("b"))){
-									System.out.println("Invalid Syntax. Type again.");
-									System.out.println("Choose an option");
-									System.out.println("a. Like the post \nb. Reply to"+ chose.owner);
+								
+								String opt;
+								do{
+									
+									System.out.println("a. Like the post \nb. Reply to "+ chose.owner+"\nc. Back to main menu");
+									System.out.println("Choose an option: ");
 									opt = sc.next();
-								}
-								if(opt.equals("a")){
-									chose.increaseLike();
-									System.out.println("Successfully liked the post");
-								}
-								else{
-									System.out.println("Reply to @"+chose.owner+" :");
-									sc.nextLine();
-									String reply = sc.nextLine();
-									chose.addReply(me.loginName, reply);
-								}
-						
+									if(opt.equals("a")){
+										chose.increaseLike();
+										System.out.println("Successfully liked the post");
+									}
+									else if(opt.equals("b")){
+										System.out.println("Reply to @"+chose.owner+" :");
+										sc.nextLine();
+										String reply = sc.nextLine();
+										chose.addReply(me.loginName, reply);
+									}
+									else if(!(opt.equals("c")|| opt.equals("a")||opt.equals("b"))){
+										System.out.println("Invalid Syntax");
+									}
+
+								}while(!(opt.equals("c")));
+								
 								
 							} catch (Exception e){
-								System.out.println("Invalid Syntax");
+								System.out.println("Invalid Input");
 							}
 						}
 						
 						
 					}catch (Exception e){
-						System.out.println("Invalid Syntax");
+						System.out.println("Invalid Input");
 					}
 				}
 			}else if(option.equals("e")){
@@ -502,7 +502,7 @@ public class SocialMedia {
 	
 			}
 			else if(!(option.equals("a") || option.equals("b") || option.equals("c"))) 
-				System.out.println("Please choose again!");
+				System.out.println("Invalid Input. Please choose again!");
 			
 		}while(!option.equals("c"));
 		app.writeFile();

@@ -1,3 +1,4 @@
+/**class definition of a priority queues holding all post in the system (the most liked post has the highest priority) */
 class Heap{
 
 	private Post[] A; //the list of posts in the heap

@@ -1,8 +1,8 @@
 import java.util.*;    
-
+/**class definition of a post object */
 public class Post {
-      private long timestamp;
-      String owner;
+      private long timestamp; //the time stamp of the post
+      String owner; 
       String content;
       private int numLikes;
       LinkedList replies = new LinkedList();
@@ -16,21 +16,25 @@ public class Post {
             
       }
 
-      //constructor for posts that already have all the information
+      //constructor for posts that already have all the information(read from the text file)
       public Post(String c, String o, long t, int l){
             content = c;
             owner = o;
             numLikes = l;
             timestamp = t; 
             
-            
       }
+      /**return the number of likes of a post
+       * @param int the number of likes of the post
+      */
       public int getLike(){
             return numLikes;
       }
+      /**increase the number of likes of a post */
       public void increaseLike(){
             numLikes ++;
       }
+      /**display all the information of the post */
       public void displayPost(){
             System.out.println("-----"+owner+"-----");
             System.out.println(new Date(timestamp));
@@ -39,9 +43,13 @@ public class Post {
             displayReply();
             
       }
+      /**return the time stamp of the post
+       * @param long time stamp of the post
+       */
       public long getTimestamp(){
             return timestamp;
       }
+
       /** method to add a reply to the post
        * @param s content of the reply
        * @param o name of the user replied to the post
@@ -50,9 +58,7 @@ public class Post {
             replies.addFirst(o+"-"+s);
       }
       /**method to display all replies of a post
-       * 
        */
-
       public void displayReply(){
             if(replies.isEmpty()){
                   System.out.println("The post has no reply yet");
@@ -74,7 +80,7 @@ public class Post {
        * @return false if the post is within a year
        */
       public boolean isExpired(){
-            int days = 365;
+            int days = 365; //the expiration period of post is 365 days
             long diff = (System.currentTimeMillis()-getTimestamp())/(24*60*60*1000);
             //if the difference is smaller than 365 days, return true (the post is not expired yet)
             if(diff < days){

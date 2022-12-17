@@ -1,5 +1,27 @@
 import java.util.*;
 
+/** 
+ * Class definition for a Node of a singly linked list of string 
+ */
+class LLNode {
+
+	/* Note: these fields are public so that they can be directly accessed
+	 * from outside this class.  For example, if v is a Node object, 
+	 * then v.entry and v.next can be used to access these fields. */
+	 
+	public String content;	//the high score entry 
+	public LLNode next;		//refers to the next node in the list
+	
+	/** 
+	 * Constructor: creates a node with the given string and next Node. 
+	 */
+	public LLNode(String e, LLNode n) {
+		content = e;
+		next = n;
+	}
+}
+
+/**class definition of a singly linked list */
 public class LinkedList{
 	LLNode head;
 	int size;
@@ -26,16 +48,20 @@ public class LinkedList{
 
 		}
 	}
+	/**return the size of the linked list */
 	public int size(){
 		return size;
 	}
+
+	/**return all the elements in the linked list as an array list so that each
+	 * element can be easily accessed by indexing
+	 */
 	public ArrayList<String> getNodeContent(){
 		LLNode current = head; //the current node
 		ArrayList<String> nodeContents = new ArrayList<String>();
 		while(current != null){
 			nodeContents.add(current.content);
 			current = current.next;
-			
 
 		}
 		return nodeContents;

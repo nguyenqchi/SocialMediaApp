@@ -1,9 +1,9 @@
 Katherine Bergeron
 kbergeron
 Camels2022
-(1671153139007,0, "Make ConnColl Great Again =)");(1647793162248,122, "Go Camels!", "wtarimo-Yay", "wtarimo-Nice job")
+(1671153139007,0, "Make ConnColl Great Again =)");(1647793162248,123, "Go Camels!", "wtarimo-Yay", "wtarimo-Nice job")
 nle6,wtarimo
-nle6,wtarimo
+cnguyen,nle6,wtarimo
 William Tarimo
 wtarimo
 haha
@@ -19,13 +19,13 @@ Wtarimo,cnguyen
 Chloe
 cnguyen
 haha
-(1671151277858,2, "Christmas is comingggg!", "nle6-And it's gonna be so cold =)))")
-wtarimo,cchung,dsmith,nle6
-dsmith,nle6,wtarimo,cchung
+(1671249375765,2, "Finals is finally over!! I'm so done with this semester =)", "waddams-you don't have to take it if you don't want =))", "nle6-Can't wait to roast the chestnut", "mdean-Enjoy your winter break ");(1671151277858,2, "Christmas is comingggg!", "nle6-And it's gonna be so cold =)))")
+kbergeron,mdean,wtarimo,cchung,dsmith,nle6
+waddams,mdean,dsmith,nle6,wtarimo,cchung
 Michelle Le
 nle6
 haha
-(1671151862335,1, "I'm a sophomore majoring in CS", "dsmith-I'm majoring in CS too. Nice to meet you!", "cnguyen-So proud of you love! Enjoy your journey =)))")
+(1671151862335,2, "I'm a sophomore majoring in CS", "dsmith-I'm majoring in CS too. Nice to meet you!", "cnguyen-So proud of you love! Enjoy your journey =)))", "cnguyen-you are so smart")
 kbergeron,cnguyen
 kbergeron,dsmith,cnguyen
 Daniel Smith
@@ -39,4 +39,16 @@ mdouglass
 haha
 
 
+
+Michael Dean
+mdean
+code
+(1671249580819,1, "I love coding =))")
+cnguyen
+cnguyen
+Wednesday Addams
+waddams
+netflix
+(1671252208363,0, "I love writing criminal novels")
+cnguyen
 

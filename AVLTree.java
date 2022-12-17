@@ -1,22 +1,45 @@
 
 
 import java.util.*;
- 
+
+ /**class of the Node object for an AVL tree*/
+class TNode{
+
+	TNode parent;
+	TNode left;
+	TNode right;
+	Post post; //the post that the node holds
+	long key; //timestamp of the post
+	/**constructor method to create a node of an AVL tree */
+	public TNode(Post po, TNode p, TNode l, TNode r){
+		parent = p;
+		left = l;
+		right = r;
+		post = po;
+		key = post.getTimestamp();
+	
+	}
+	/**method to display the key of a node */
+	public void displayNode(){
+		post.displayPost();
+	}
+
+}
  /**class to an AVL tree object to hold Post objects with the key being the timestamp of each post*/
  
  public class AVLTree{
 	 TNode root;
 	 int size;
-	 ArrayList<Post> allPost; //array list ot hold all the post in the tree
+	 ArrayList<Post> allPost; //array list ot hold all the post in the tree in reverse-chronological order
 	 public AVLTree(){
 		 root = null;
 		 size = 0;
-		 
+		 allPost = new ArrayList<Post>();
 	 }
-	 //***BONUS BONUS BONUS inorder traversal go from the right child first then
-	 //the left child so that the post can be displayed in reverse-chronological order
+	 /**BONUS BONUS BONUS inorder traversal go from the right child first then
+	 the left child so that the post can be displayed in reverse-chronological order*/
  
-	 /**inOrder traversal to display all the post in  chronological order
+	 /**inOrder traversal to display all the post in  reverse-chronological order
 	  * @param TNode v the root of the tree
 	  * reverse-chronological order
 	  */
@@ -25,16 +48,18 @@ import java.util.*;
 			 inOrder(v.right, allPost);
 		 
 		 }
-		 
-		 allPost.add(v.post);
-	 
-	 
+		 allPost.add(v.post); //add the post to the list
 		 if(v.left != null){
 			 inOrder(v.left, allPost);
 		 
 		 }
 		 
 	 }
+
+	 /**return the list of post in reverse-chronological order
+	  * @param boolean printPost whether to print all the post or not
+	  * @return the array list that holds all post in the tree in reverse-chronological order
+	  */
 	 public ArrayList<Post> getPostList(boolean printPost){
 	 	 if(isEmpty()){
 	 	 	System.out.println("This user hasn't posted anything lately");
@@ -102,22 +127,9 @@ import java.util.*;
 	 }
 	 //end of insert method
  
-	 /**method to find the node with the smallest key in a sub-tree
+	 /**method to find the node with the largest key(time stamp) in a sub-tree
 	   * @param TNode v the root of the sub-tree
-	   * @return the node with maximum key 
-	   */
-	 private TNode getMin(TNode v){
-		  if (v.left == null){
-			  return v;
-		  }
-		  else{
-			  return getMin(v.left);
-		  }
-	 }
- 
-	 /**method to find the node with the smallest key in a sub-tree
-	   * @param TNode v the root of the sub-tree
-	   * @return the node with maximum key 
+	   * @return the node with maximum key (largest time stamp)
 	   */
 	 public TNode getMax(TNode v){
 		  if (v.right == null){
@@ -135,7 +147,7 @@ import java.util.*;
 		 TNode v = getMax(root);
 		 return v;
 	 }
-	 
+	 /**method to return if the tree is empty */
 	 public  boolean isEmpty(){
 		 return (root == null);
 	 }
@@ -261,7 +273,6 @@ import java.util.*;
 		 Post mypost2 = new Post("Be grateful!", "wsmith", 1607793162248l, 32);
 		 Post mypost3 = new Post("Happy Thanksgiving", "wtarimo", 1637793162248l, 35);
 		 Post mypost4 = new Post("Happy New Year", "tnguyen", 1648793162248l, 37);
-		 Post mypost5 = new Post("Happy New Year", "wnguyen", 1658793162248l, 5);
 		 
 		 AVLTree myTree = new AVLTree();
 		 myTree.insert(mypost1);
@@ -269,10 +280,7 @@ import java.util.*;
 		 myTree.insert(mypost3);
 		 myTree.insert(mypost4);
 		 myTree.insert(mypost);
-  
- 
-		 //display all the post chronological order
-		 ArrayList<Post> recent = myTree.getPostList(true);
+
  
 		 System.out.println("The most recent post is");
 		 myTree.getRecentPost().displayNode();
