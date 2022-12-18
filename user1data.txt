@@ -19,14 +19,14 @@ Wtarimo,cnguyen
 Chloe
 cnguyen
 haha
-(1671249375765,2, "Finals is finally over!! I'm so done with this semester =)", "waddams-you don't have to take it if you don't want =))", "nle6-Can't wait to roast the chestnut", "mdean-Enjoy your winter break ");(1671151277858,2, "Christmas is comingggg!", "nle6-And it's gonna be so cold =)))")
-kbergeron,mdean,wtarimo,cchung,dsmith,nle6
-waddams,mdean,dsmith,nle6,wtarimo,cchung
+(1671340085776,0, "Finally I can get some decent sleep =))");(1671249375765,2, "Finals is finally over!! I'm so done with this semester =)", "waddams-you don't have to take it if you don't want =))", "nle6-Can't wait to roast the chestnut", "mdean-Enjoy your winter break ");(1671151277858,2, "Christmas is comingggg!", "nle6-And it's gonna be so cold =)))")
+kbergeron,mdean,wtarimo,cchung,dsmith,nle6,mvalle
+waddams,mdean,dsmith,nle6,wtarimo,cchung,mvalle
 Michelle Le
 nle6
 haha
 (1671151862335,2, "I'm a sophomore majoring in CS", "dsmith-I'm majoring in CS too. Nice to meet you!", "cnguyen-So proud of you love! Enjoy your journey =)))", "cnguyen-you are so smart")
-kbergeron,cnguyen
+mvalle,kbergeron,cnguyen
 kbergeron,dsmith,cnguyen
 Daniel Smith
 dsmith
@@ -52,3 +52,9 @@ netflix
 (1671252208363,0, "I love writing criminal novels")
 cnguyen
 
+michelle valle
+mvalle
+mylove
+(1671339946882,2, "I just got engaged!!!!", "nle6-So happy for you love!", "cnguyen-Congratulations! I feel lucky for that guy!")
+cnguyen
+nle6,cnguyen

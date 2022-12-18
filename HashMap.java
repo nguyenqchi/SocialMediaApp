@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+/**class definition for a Node of a hash table*/
 class HashNode{
 
 	String key;
@@ -12,15 +12,15 @@ class HashNode{
 	}
 
 }
-
+/**class definition for a hash table to hold all users in the app */
 public class HashMap {
 
-	private HashNode[] bucketArray;
-	private int capacity;
-	private int size;
+	private HashNode[] bucketArray; 
+	private int capacity; //the capacity of the hash table
+	private int size; //the actual size of the hash table
 	ArrayList<User> values = new ArrayList<User>(); //array list to hold all values(user object) in the hash map
 	
-
+	/**constructor to create a hash map given the capacity*/
 	public HashMap(int cap){
 		bucketArray = new HashNode[cap]; //the array to hold all hash node
 		capacity = cap; //capacity of the bucket array
@@ -31,15 +31,15 @@ public class HashMap {
 		}
 
 	}
-
+	/**return the number of user objects in the hash table*/
 	public int size(){
 		return size; 
 	}
-
+	/**check if the hash table is empty*/
 	public boolean isEmpty(){
 		return size() == 0;
 	}
-
+	/**hash function using horner's hash method*/
 	public long hashCode(String key){
 		//hash using Horner's method
 		long hashVal = 0;
@@ -49,6 +49,7 @@ public class HashMap {
 		}
 		return hashVal;
 	}
+	/**method to return letter/number into integer*/
 	private int charCode(char c) {
 
 		char[] abc = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -56,6 +57,7 @@ public class HashMap {
 		
 		return index+1;
 	}	
+	/**method to find the position of a character in an array*/
 	private int binarySearch(char searchKey, char[] a){
 		int low = 0;
 		int hi = a.length - 1;
@@ -107,6 +109,8 @@ public class HashMap {
     }
 
     /**method to add new Node into the hash map
+     * @param String the login name of the user
+     * @param User the user object associated with the login name
      */
     public void add(String key, User value){
 

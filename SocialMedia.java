@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 
+/**class for the main social media app*/
 public class SocialMedia {
 
 	private HashMap myMap = new HashMap(911);
@@ -8,10 +9,11 @@ public class SocialMedia {
 	public ArrayList<Post> followingPost = new ArrayList<Post>();
 	Heap allpost = new Heap(1000);
 	
-	//will add all posts to the heap in the constructor
+	/**constructor to initiate a social media app with users' information stored in a text file*/
 	public SocialMedia(){
-		readFile();
+		readFile(); //read users' information from the text file
 	}
+	/**display the main menu of the app*/
 	public void displayMenu(){
 		System.out.println();
 		System.out.println("--- CC SNAP TWEET ---\n");
@@ -21,7 +23,7 @@ public class SocialMedia {
 		
 		
 	}
-	
+	/**display the new feed when a user successfully login in*/
 	public void newFeed(User me){
 		System.out.println("\nWelcome, "+me.displayName+"\n");
 
@@ -68,26 +70,31 @@ public class SocialMedia {
 		}
 	}
 	
-	
+	/** method for users to log in their account
+	 * @param String login name
+	 */
 	public void logIn(String loginName) {
-		User me = myMap.get(loginName);
-		String pw;
+
+		User me = myMap.get(loginName); //get the user object 
+		String pw; //password
 		
 		if(me == null){
 			System.out.println("The login name you typed in is not existed in our system.");
 		}
 		else{
 			do{
+				//check users' indentity
 				System.out.print("Enter your password: ");
 				pw = sc.next();
 				
 			}
 			while(!me.checkPassword(pw));
-			newFeed(me);
-			mainAction(me);
+			newFeed(me); //display new feed
+			mainAction(me); //go to main action
 		}
 	}
 	
+	/**display users' options after logging in*/
 	private void displayUserMenu(){
 		System.out.println("----- MAIN MENU -----");
 		System.out.println("a. Like a post");
@@ -99,6 +106,10 @@ public class SocialMedia {
 		System.out.println("g. Log out");
 	}
 	
+	/**BONUS BONUS BONUS method to display all posts from accounts that the user is following 
+	 * in reverse-chronological order
+	 * @param User the user
+	 */
 	private void displayFollowingPost(User me){
 
 		LinkedList following = me.following;
@@ -112,6 +123,9 @@ public class SocialMedia {
 		}
 
 	}
+	/**method to control main actions of user after logging in
+	 * @param User the user
+	 */
 	public void mainAction(User me){
 		
 		String option;
@@ -240,35 +254,39 @@ public class SocialMedia {
 		}
 		while(!option.equals("g"));
 	}
-
-			
 	
+	/**method to create a new account
+	 * @param String login name of the new account
+	 * @param String password of the new account
+	 * @param String display name of the new account
+	 */
 	public void createNewUser(String loginName, String passWord, String userName) {
 		
+		User user = new User(loginName); //create new user object
 		
-		User user = new User(loginName);
-		
-		myMap.add(loginName, user);
-		
+		myMap.add(loginName, user); //add to the hash map
 		
 		user.setPassword(passWord);
 	
 		user.setDisplayName(userName);
 		System.out.println("New account successfully created!");
 		
-	
-		
 	}	
 
+	/**method to write the text file each time the program is terminated*/
 	public void writeFile() {
 		try {
 			FileWriter file = new FileWriter("user1data.txt");
 			BufferedWriter buffWriter = new BufferedWriter(file);
 			
+			//get a list of all users in the app
 			ArrayList<User> users = myMap.getValues();
 			int size = myMap.size();
+
 			for (int i=0; i<size; i++) {
+				//loop through each user
 				User u = users.get(i);
+				//write their display name, login name, password
 				String name = u.displayName;
 				buffWriter.write(name + "\n");
 				String login = u.loginName;
@@ -277,7 +295,7 @@ public class SocialMedia {
 				buffWriter.write(pass + "\n");
 				String p ;
 				
-				//write posts
+				//write all their posts
 				if(u.allPost.isEmpty())
 					buffWriter.write("\n");
 				else{
@@ -287,7 +305,7 @@ public class SocialMedia {
 						 Post post = posts.get(k);
 						 p += post.getTimestamp() + "," + post.getLike() + ", ";
 						 p += "\"" + post.content +"\"";
-						 
+						 //write the replies of the post
 						 ArrayList<String> allReplies = post.replies.getNodeContent();
 						 if (allReplies.size() == 0)
 						 	p += "";
@@ -308,7 +326,7 @@ public class SocialMedia {
 				}
 					
 				
-				//write following
+				//write the list of following accounts
 				if(u.following.isEmpty())
 					buffWriter.write("\n");
 				else{
@@ -325,7 +343,7 @@ public class SocialMedia {
 					}
 				}
 				
-				//write follower
+				//write the list of follower account
 				if (u.followers.isEmpty())
 					buffWriter.write("\n");
 				else{
@@ -352,6 +370,7 @@ public class SocialMedia {
 		}
 	}
 	
+	/**method to read the text file that stored users' information*/
 	public void readFile(){
 		//this try-catch statement is needed around this file input code
 		//because the FileInputStream may throw a FileNotFoundException
@@ -467,6 +486,8 @@ public class SocialMedia {
 		
 	
 	}
+
+	/**main method of the social app*/
 	public static void main (String[] args){
 	
 		SocialMedia app = new SocialMedia();
@@ -478,6 +499,7 @@ public class SocialMedia {
 			System.out.print("Please choose an option: ");
 			option = sc.next(); 
 			if(option.equals("b")){
+				//create new account
 				System.out.print("Please enter your login name: ");
 				String loginName = sc.next();
 
@@ -496,6 +518,7 @@ public class SocialMedia {
 				app.createNewUser(loginName,passWord,userName);
 			}
 			else if(option.equals("a")){
+				//login to current account
 				System.out.print("Please enter your login name: ");
 				String loginName = sc.next();
 				app.logIn(loginName);
@@ -505,7 +528,7 @@ public class SocialMedia {
 				System.out.println("Invalid Input. Please choose again!");
 			
 		}while(!option.equals("c"));
-		app.writeFile();
+		app.writeFile(); //write all data into a text file before terminating the program
 	}
 		
 }
